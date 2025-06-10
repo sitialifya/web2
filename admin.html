@@ -75,7 +75,7 @@ async function loadData() {
   data.forEach(row => {
     const tr = document.createElement('tr')
     tr.dataset.id = row.id
-    tr.innerHTML = `<td>${row.id}</td><td>${row.judul}</td><td>${row.isi}</td>`
+    tr.innerHTML = `<td>${row.id}</td><td>${row.Judul}</td><td>${row.isi}</td>`
     tr.addEventListener('click', () => showForm(row))
     dataBody.appendChild(tr)
   })
@@ -118,11 +118,11 @@ async function saveData(e) {
 
   if (id) {
     // Update
-    const { error } = await supabase.from('web1').update({ judul, isi }).eq('id', id)
+    const { error } = await supabase.from('web1').update({ Judul, isi }).eq('id', id)
     if (error) return alert('Error update: ' + error.message)
   } else {
     // Insert
-    const { error } = await supabase.from('web1').insert([{ judul, isi }])
+    const { error } = await supabase.from('web1').insert([{ Judul, isi }])
     if (error) return alert('Error insert: ' + error.message)
   }
 
