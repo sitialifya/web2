@@ -49,9 +49,8 @@
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
 
 
-const SUPABASE_URL = 'https://zligkbkrxqqbetnwykrq.supabase.co'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpsaWdrYmtyeHFxYmV0bnd5a3JxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkyNjM2ODUsImV4cCI6MjA2NDgzOTY4NX0.kDK8_c6qCKKRax4HbHwEbAMwTavhDRWdgqkDtjWWYD8'
-
+const SUPABASE_URL = 'https://nvpiksaqnquxzkhhuvmf.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im52cGlrc2FxbnF1eHpraGh1dm1mIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgzMjU4NjQsImV4cCI6MjA2MzkwMTg2NH0.xmr7FKj7Srcz9kERNnPCBqfKwQUPcD-1eD6TqDIe5no'
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
@@ -67,7 +66,7 @@ const cancelBtn = document.getElementById('cancelBtn')
 
 // Fungsi load data ke tabel
 async function loadData() {
-  const { data, error } = await supabase.from('web').select('*').order('id')
+  const { data, error } = await supabase.from('web1').select('*').order('id')
   if (error) {
     alert('Error loading data: ' + error.message)
     return
@@ -119,11 +118,11 @@ async function saveData(e) {
 
   if (id) {
     // Update
-    const { error } = await supabase.from('web').update({ judul, isi }).eq('id', id)
+    const { error } = await supabase.from('web1').update({ judul, isi }).eq('id', id)
     if (error) return alert('Error update: ' + error.message)
   } else {
     // Insert
-    const { error } = await supabase.from('web').insert([{ judul, isi }])
+    const { error } = await supabase.from('web1').insert([{ judul, isi }])
     if (error) return alert('Error insert: ' + error.message)
   }
 
@@ -137,7 +136,7 @@ async function deleteData() {
   if (!id) return
   if (!confirm('Yakin ingin menghapus data ini?')) return
 
-  const { error } = await supabase.from('web').delete().eq('id', id)
+  const { error } = await supabase.from('web1').delete().eq('id', id)
   if (error) return alert('Error hapus: ' + error.message)
 
   hideForm()
